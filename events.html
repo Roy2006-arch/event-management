@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Events — Eventify</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+  <!-- Floating background orbs -->
+  <div class="floating-orb"></div>
+  <div class="floating-orb"></div>
+  <div class="floating-orb"></div>
+  <div class="floating-orb"></div>
+  <div class="floating-orb"></div>
+
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <a class="brand" href="index.html">
+        <span class="brand-logo">🎟️</span>
+        <span class="brand-name">Eventify</span>
+      </a>
+
+      <nav class="nav">
+        <a href="events.html">Events</a>
+        <a href="booking.html">Booking</a>
+        <a href="confirmation.html">Confirmation</a>
+        <a class="btn btn-ghost" href="index.html">Back to Home</a>
+      </nav>
+
+      <button class="menu-btn" id="menuBtn" aria-label="Open Menu">☰</button>
+    </div>
+
+    <div class="mobile-nav" id="mobileNav">
+      <a href="events.html">Events</a>
+      <a href="booking.html">Booking</a>
+      <a href="confirmation.html">Confirmation</a>
+      <a class="btn btn-primary" href="index.html">Back to Home</a>
+    </div>
+  </header>
+
+  <main class="section">
+    <div class="container">
+      <div class="section-head" style="margin-bottom:14px;">
+        <div>
+          <h2 style="margin-bottom:6px;">Browse Events</h2>
+          <p class="muted">Search, filter and open details. Book tickets instantly.</p>
+        </div>
+        <a class="btn btn-primary" href="admin.html">Admin Panel</a>
+      </div>
+
+      <!-- Filters -->
+      <div class="card glass" style="padding:14px; margin-bottom:16px;">
+        <div class="grid" style="grid-template-columns: 1.2fr .8fr .8fr .8fr; gap:12px;">
+          <div class="field" style="margin:0;">
+            <label>Search</label>
+            <input id="searchInput" type="text" placeholder="Search events (music, workshop, kolkata...)" />
+          </div>
+
+          <div class="field" style="margin:0;">
+            <label>Type</label>
+            <select id="typeFilter">
+              <option value="all">All</option>
+              <option value="live">Live</option>
+              <option value="talk">Talk</option>
+              <option value="workshop">Workshop</option>
+            </select>
+          </div>
+
+          <div class="field" style="margin:0;">
+            <label>City</label>
+            <select id="cityFilter">
+              <option value="all">All</option>
+              <option value="kolkata">Kolkata</option>
+              <option value="durgapur">Durgapur</option>
+              <option value="mumbai">Mumbai</option>
+              <option value="delhi">Delhi</option>
+              <option value="bangalore">Bangalore</option>
+              <option value="chennai">Chennai</option>
+              <option value="hyderabad">Hyderabad</option>
+              <option value="online">Online</option>
+            </select>
+          </div>
+
+          <div class="field" style="margin:0;">
+            <label>Sort</label>
+            <select id="sortBy">
+              <option value="date">Date</option>
+              <option value="priceLow">Price: Low</option>
+              <option value="priceHigh">Price: High</option>
+              <option value="name">Name</option>
+            </select>
+          </div>
+        </div>
+
+        <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:12px;">
+          <button class="btn btn-sm btn-ghost pill-btn active" data-quick="all" type="button">All</button>
+          <button class="btn btn-sm btn-ghost pill-btn" data-quick="free" type="button">Free</button>
+          <button class="btn btn-sm btn-ghost pill-btn" data-quick="online" type="button">Online</button>
+          <button class="btn btn-sm btn-ghost pill-btn" data-quick="thisWeek" type="button">This Week</button>
+
+          <div style="margin-left:auto; display:flex; gap:10px;">
+            <button class="btn btn-sm btn-ghost" id="prevBtn" type="button">Prev</button>
+            <button class="btn btn-sm btn-ghost" id="nextBtn" type="button">Next</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Cards Grid -->
+      <div class="grid cards-3" id="eventsGrid"></div>
+    </div>
+  </main>
+
+  <!-- Event Details Modal -->
+  <div class="modal" id="detailsModal" aria-hidden="true">
+    <div class="modal-backdrop" data-close="1"></div>
+
+    <div class="modal-card reveal" role="dialog" aria-modal="true" aria-labelledby="mTitle">
+      <button class="modal-close btn btn-sm btn-ghost" data-close="1" aria-label="Close">✕</button>
+
+      <div class="modal-banner" id="mBanner"></div>
+
+      <div class="modal-body">
+        <div class="modal-head">
+          <h2 id="mTitle">Event Title</h2>
+          <span class="tag" id="mTag">Type</span>
+        </div>
+
+        <p class="muted" id="mMeta">Meta</p>
+        <p class="muted" id="mDesc" style="margin-top:10px;"></p>
+
+        <div class="hr"></div>
+
+        <div class="list">
+          <div class="li"><div class="left">📍 Venue</div><div class="right" id="mVenue">—</div></div>
+          <div class="li"><div class="left">🗓️ Date</div><div class="right" id="mDate">—</div></div>
+          <div class="li"><div class="left">⏰ Time</div><div class="right" id="mTime">—</div></div>
+          <div class="li"><div class="left">💳 Price</div><div class="right" id="mPrice">—</div></div>
+        </div>
+
+        <div class="hr"></div>
+
+        <h3>Agenda</h3>
+        <div class="list" id="mAgenda"></div>
+
+        <div class="hr"></div>
+
+        <h3>Speakers / Hosts</h3>
+        <div class="list" id="mSpeakers"></div>
+
+        <div class="hr"></div>
+
+        <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top: 6px;">
+          <a class="btn btn-primary" id="mBookBtn" href="#">Book Now</a>
+          <button class="btn btn-ghost" data-close="1" type="button">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="muted">© 2026 Eventify. All rights reserved.</div>
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="admin.html">Admin</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/events.js"></script>
+</body>
+</html>

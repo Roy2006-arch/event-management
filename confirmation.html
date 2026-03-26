@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Confirmation — Eventify</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <!-- Floating background orbs -->
+  <div class="floating-orb"></div>
+  <div class="floating-orb"></div>
+  <div class="floating-orb"></div>
+  <div class="floating-orb"></div>
+  <div class="floating-orb"></div>
+
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <a class="brand" href="index.html">
+        <span class="brand-logo">🎟️</span>
+        <span class="brand-name">Eventify</span>
+      </a>
+      <nav class="nav">
+        <a href="events.html">Events</a>
+        <a href="booking.html">Booking</a>
+        <a href="confirmation.html">Confirmation</a>
+      </nav>
+      <button class="menu-btn" id="menuBtn" aria-label="Open Menu">☰</button>
+    </div>
+    <div class="mobile-nav" id="mobileNav">
+      <a href="events.html">Events</a>
+      <a href="booking.html">Booking</a>
+      <a href="confirmation.html">Confirmation</a>
+    </div>
+  </header>
+
+  <main class="section">
+    <div class="container">
+      <h2>Booking Confirmed! 🎉</h2>
+      <p class="muted">Your payment was successful. Here are your booking details.</p>
+      <div style="height:14px"></div>
+
+      <div class="card glass" style="padding:16px; max-width:400px; margin:0 auto;">
+        <div class="kv">
+          <div class="k">Booking ID</div>
+          <div class="v" id="confBookingId">—</div>
+        </div>
+        <div class="kv">
+          <div class="k">Event</div>
+          <div class="v" id="confEvent">—</div>
+        </div>
+        <div class="kv">
+          <div class="k">Amount Paid</div>
+          <div class="v" id="confAmount">—</div>
+        </div>
+        <div class="kv">
+          <div class="k">Payment ID</div>
+          <div class="v" id="confPaymentId">—</div>
+        </div>
+      </div>
+
+      <div style="height:20px"></div>
+      <a class="btn btn-primary" href="index.html">Back to Home</a>
+    </div>
+  </main>
+
+  <script src="js/main.js"></script>
+
+  <script>
+    // Parse URL params and fill confirmation details
+    const params = new URLSearchParams(window.location.search);
+    const bookingId = params.get('booking') || 'BK' + Date.now();
+    const eventName = params.get('event') || 'Event';
+    const amount = params.get('amount') || '0';
+    const paymentId = params.get('payment_id') || 'N/A';
+
+    document.getElementById('confBookingId').textContent = bookingId;
+    document.getElementById('confEvent').textContent = decodeURIComponent(eventName);
+    document.getElementById('confAmount').textContent = amount === '0' ? 'Free' : `₹${amount}`;
+    document.getElementById('confPaymentId').textContent = paymentId;
+  </script>
+</body>
+</html>

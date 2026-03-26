@@ -1,0 +1,356 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Panel — Eventify</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+  <!-- Floating background orbs -->
+  <div class="floating-orb"></div>
+  <div class="floating-orb"></div>
+  <div class="floating-orb"></div>
+  <div class="floating-orb"></div>
+  <div class="floating-orb"></div>
+
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <a class="brand" href="index.html">
+        <span class="brand-logo">🎟️</span>
+        <span class="brand-name">Eventify</span>
+      </a>
+
+      <nav class="nav">
+        <a href="events.html">Events</a>
+        <a href="booking.html">Booking</a>
+        <a href="confirmation.html">Confirmation</a>
+        <a class="btn btn-ghost" href="index.html">Back to Home</a>
+      </nav>
+
+      <button class="menu-btn" id="menuBtn" aria-label="Open Menu">☰</button>
+    </div>
+
+    <div class="mobile-nav" id="mobileNav">
+      <a href="events.html">Events</a>
+      <a href="booking.html">Booking</a>
+      <a href="confirmation.html">Confirmation</a>
+      <a class="btn btn-primary" href="index.html">Back to Home</a>
+    </div>
+  </header>
+
+  <main class="section">
+    <!-- Login Overlay -->
+    <div class="login-overlay" id="loginOverlay">
+      <div class="login-container">
+        <div class="login-card glass">
+          <div class="login-header">
+            <h2>🔐 Admin Login</h2>
+            <p class="muted">Enter credentials to access the admin panel</p>
+          </div>
+
+          <form class="login-form" id="loginForm">
+            <div class="field">
+              <label for="userid">User ID</label>
+              <input type="text" id="userid" placeholder="Enter your user ID" required />
+            </div>
+
+            <div class="field">
+              <label for="password">Password</label>
+              <input type="password" id="password" placeholder="Enter your password" required />
+            </div>
+
+            <button type="submit" class="btn btn-primary login-btn">Login</button>
+
+            <div class="login-error" id="loginError" style="display: none;">
+              Invalid credentials. Please try again.
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="admin-content" id="adminContent" style="display: none;">
+    <div class="container">
+      <div class="section-head" style="margin-bottom:14px;">
+        <div>
+          <h2 style="margin-bottom:6px;">Admin Panel</h2>
+          <p class="muted">Manage events: add, edit, delete.</p>
+        </div>
+        <div style="display: flex; gap: 10px; align-items: center;">
+          <button class="btn btn-ghost" id="logoutBtn">Logout</button>
+          <a class="btn btn-primary" href="events.html">View Events</a>
+        </div>
+      </div>
+
+      <!-- Statistics -->
+      <div class="grid cards-4" style="margin-bottom:16px;">
+        <div class="card glass stat-card reveal">
+          <div class="stat-icon">📅</div>
+          <div class="stat-num" id="totalEvents">0</div>
+          <div class="stat-label">Total Events</div>
+        </div>
+        <div class="card glass stat-card reveal">
+          <div class="stat-icon">💰</div>
+          <div class="stat-num" id="paidEvents">0</div>
+          <div class="stat-label">Paid Events</div>
+        </div>
+        <div class="card glass stat-card reveal">
+          <div class="stat-icon">🎟️</div>
+          <div class="stat-num" id="totalSeats">0</div>
+          <div class="stat-label">Total Seats</div>
+        </div>
+        <div class="card glass stat-card reveal">
+          <div class="stat-icon">📍</div>
+          <div class="stat-num" id="upcomingEvents">0</div>
+          <div class="stat-label">Upcoming</div>
+        </div>
+      </div>
+
+      <!-- Add/Edit Form -->
+      <div class="card glass" style="padding:16px; margin-bottom:16px;">
+        <div class="form-header">
+          <h3 style="margin-bottom:10px;">Add / Edit Event</h3>
+          <div class="tabs">
+            <button class="tab-btn active" data-tab="basic">Basic Info</button>
+            <button class="tab-btn" data-tab="details">Details</button>
+            <button class="tab-btn" data-tab="advanced">Advanced</button>
+          </div>
+        </div>
+
+        <form class="form" id="adminForm">
+          <!-- Basic Tab -->
+          <div class="tab-content active" id="basic">
+            <!-- Image Upload Section -->
+            <div class="image-upload-section">
+              <div class="image-preview" id="imagePreview">
+                <div class="upload-placeholder">
+                  <div class="upload-icon">📷</div>
+                  <div class="upload-text">Click to upload event image</div>
+                  <div class="upload-subtext">JPG, PNG up to 5MB</div>
+                </div>
+              </div>
+              <input type="file" id="aImageFile" accept="image/*" style="display: none;" />
+              <div class="image-actions">
+                <button type="button" class="btn btn-sm btn-ghost" id="uploadBtn">Choose Image</button>
+                <button type="button" class="btn btn-sm btn-ghost" id="removeImageBtn" style="display: none;">Remove</button>
+              </div>
+            </div>
+
+            <!-- Form Fields -->
+            <div class="form-grid">
+              <div class="field-group">
+                <div class="field-icon">🎪</div>
+                <div class="field animated-field">
+                  <label for="aName">Event Name *</label>
+                  <input id="aName" type="text" placeholder="Enter event name" required />
+                </div>
+              </div>
+
+              <div class="field-group">
+                <div class="field-icon">🏷️</div>
+                <div class="field animated-field">
+                  <label for="aType">Event Type *</label>
+                  <select id="aType">
+                    <option value="conference">🎤 Conference</option>
+                    <option value="live">🎶 Live Event</option>
+                    <option value="talk">💬 Talk</option>
+                    <option value="workshop">🛠️ Workshop</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="field-group">
+                <div class="field-icon">📍</div>
+                <div class="field animated-field">
+                  <label for="aCity">City *</label>
+                  <select id="aCity">
+                    <option value="kolkata">🏙️ Kolkata</option>
+                    <option value="durgapur">🏭 Durgapur</option>
+                    <option value="mumbai">🌆 Mumbai</option>
+                    <option value="delhi">🏛️ Delhi</option>
+                    <option value="bangalore">🏙️ Bangalore</option>
+                    <option value="chennai">🏝️ Chennai</option>
+                    <option value="hyderabad">🏞️ Hyderabad</option>
+                    <option value="online">💻 Online</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="field-group">
+                <div class="field-icon">🏢</div>
+                <div class="field animated-field">
+                  <label for="aVenue">Venue</label>
+                  <input id="aVenue" type="text" placeholder="Venue location" />
+                </div>
+              </div>
+
+              <div class="field-group">
+                <div class="field-icon">📅</div>
+                <div class="field animated-field">
+                  <label for="aDate">Date *</label>
+                  <input id="aDate" type="date" required />
+                </div>
+              </div>
+
+              <div class="field-group">
+                <div class="field-icon">⏰</div>
+                <div class="field animated-field">
+                  <label for="aTime">Time *</label>
+                  <input id="aTime" type="time" required />
+                </div>
+              </div>
+
+              <div class="field-group">
+                <div class="field-icon">💰</div>
+                <div class="field animated-field">
+                  <label for="aPrice">Price (₹)</label>
+                  <input id="aPrice" type="number" min="0" placeholder="0 for free" />
+                </div>
+              </div>
+
+              <div class="field-group">
+                <div class="field-icon">🎫</div>
+                <div class="field animated-field">
+                  <label for="aSeats">Available Seats</label>
+                  <input id="aSeats" type="number" min="1" placeholder="200" />
+                </div>
+              </div>
+            </div>
+
+            <div class="field animated-field">
+              <div class="field-icon" style="align-self: flex-start; margin-top: 12px;">📝</div>
+              <div style="flex: 1;">
+                <label for="aDesc">Description *</label>
+                <textarea id="aDesc" placeholder="Describe your event..." rows="4" required></textarea>
+              </div>
+            </div>
+            <!-- Hidden input for image data URL -->
+            <input type="hidden" id="aImage" />
+          </div>
+
+          <!-- Details Tab -->
+          <div class="tab-content" id="details">
+            <div class="row">
+              <div class="field animated-field">
+                <label for="aDuration">Duration</label>
+                <input id="aDuration" type="text" placeholder="e.g., 2 hrs" />
+              </div>
+              <div class="field animated-field">
+                <label for="aSpeakers">Speakers Count</label>
+                <input id="aSpeakers" type="number" min="0" placeholder="Number of speakers" />
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="aAgenda">Agenda (one per line)</label>
+              <textarea id="aAgenda" placeholder="10:00 — Opening&#10;11:00 — Main Talk&#10;12:00 — Q&A" rows="4"></textarea>
+            </div>
+
+            <div class="field">
+              <label for="aSpeakersList">Speakers / Hosts (comma separated)</label>
+              <input id="aSpeakersList" type="text" placeholder="Speaker 1, Speaker 2, Host" />
+            </div>
+          </div>
+
+          <!-- Advanced Tab -->
+          <div class="tab-content" id="advanced">
+            <div class="field">
+              <label for="aFaqs">FAQs (JSON format)</label>
+              <textarea id="aFaqs" placeholder='[{"q": "Question?", "a": "Answer."}]' rows="4"></textarea>
+            </div>
+
+            <div class="field">
+              <label>Preview</label>
+              <div class="event-preview" id="eventPreview">
+                <div class="event-card">
+                  <div class="event-img" id="previewImg"></div>
+                  <div class="event-content">
+                    <div class="event-top">
+                      <h3 id="previewName">Event Name</h3>
+                      <span class="tag" id="previewType">Type</span>
+                    </div>
+                    <p class="muted" id="previewMeta">Meta</p>
+                    <div class="event-meta">
+                      <span id="previewCity">📍 City</span>
+                      <span id="previewDate">🗓️ Date</span>
+                      <span id="previewPrice">₹Price</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:20px;">
+            <button class="btn btn-primary" id="saveEvent" type="button">Save Event</button>
+            <button class="btn btn-ghost" id="resetForm" type="button">Reset</button>
+            <button class="btn btn-ghost" id="previewBtn" type="button">Preview</button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Events Table -->
+      <div class="card glass" style="padding:16px;">
+        <div class="table-header">
+          <h3 style="margin-bottom:10px;">All Events</h3>
+          <div class="table-controls">
+            <div class="field" style="margin:0; min-width:200px;">
+              <input id="adminSearch" type="text" placeholder="Search events..." />
+            </div>
+            <select id="adminFilter">
+              <option value="all">All Types</option>
+              <option value="conference">Conference</option>
+              <option value="live">Live</option>
+              <option value="talk">Talk</option>
+              <option value="workshop">Workshop</option>
+            </select>
+            <button class="btn btn-ghost" id="selectAllBtn">Select All</button>
+            <button class="btn btn-danger" id="bulkDeleteBtn" disabled>Bulk Delete</button>
+          </div>
+        </div>
+
+        <table class="table">
+          <thead>
+            <tr>
+              <th><input type="checkbox" id="selectAll" /></th>
+              <th>Name</th>
+              <th>Type</th>
+              <th>City</th>
+              <th>Date</th>
+              <th>Price</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="adminTableBody">
+            <!-- Events will be rendered here -->
+          </tbody>
+        </table>
+
+        <div class="table-footer">
+          <div class="pagination">
+            <button class="btn btn-sm btn-ghost" id="prevPage">Previous</button>
+            <span id="pageInfo">Page 1 of 1</span>
+            <button class="btn btn-sm btn-ghost" id="nextPage">Next</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div> <!-- End admin-content -->
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="muted">© 2026 Eventify. All rights reserved.</div>
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="events.html">Events</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/events.js"></script>
+</body>
+</html>

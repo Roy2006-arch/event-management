@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Booking — Eventify</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+  <!-- Floating background orbs -->
+  <div class="floating-orb"></div>
+  <div class="floating-orb"></div>
+  <div class="floating-orb"></div>
+  <div class="floating-orb"></div>
+  <div class="floating-orb"></div>
+
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <a class="brand" href="index.html">
+        <span class="brand-logo">🎟️</span>
+        <span class="brand-name">Eventify</span>
+      </a>
+
+      <nav class="nav">
+        <a href="events.html">Events</a>
+        <a href="booking.html">Booking</a>
+        <a href="confirmation.html">Confirmation</a>
+      </nav>
+
+      <button class="menu-btn" id="menuBtn" aria-label="Open Menu">☰</button>
+    </div>
+
+    <div class="mobile-nav" id="mobileNav">
+      <a href="events.html">Events</a>
+      <a href="booking.html">Booking</a>
+      <a href="confirmation.html">Confirmation</a>
+    </div>
+  </header>
+
+  <main class="section">
+    <div class="container">
+      <div class="section-head" style="margin-bottom:14px;">
+        <div>
+          <h2 style="margin-bottom:6px;">Complete your Booking</h2>
+          <p class="muted">Fill details and pay securely.</p>
+        </div>
+        <a class="btn btn-ghost" href="events.html">← Back to Events</a>
+      </div>
+
+      <div class="grid" style="grid-template-columns: 1fr 1fr; gap:16px;">
+        <!-- Event Summary -->
+        <div class="card glass" style="padding:16px;">
+          <h3 id="bkEventTitle" style="margin-bottom:6px;">Event</h3>
+          <p class="muted" id="bkEventMeta">—</p>
+
+          <div class="divider"></div>
+
+          <div class="row" style="gap:12px;">
+            <div class="kv">
+              <div class="k">Price</div>
+              <div class="v" id="bkEventPrice">—</div>
+            </div>
+            <div class="kv">
+              <div class="k">Seats</div>
+              <div class="v" id="bkEventSeats">—</div>
+            </div>
+          </div>
+
+          <div class="divider"></div>
+
+          <p class="tiny muted">
+            For paid events, Razorpay Checkout will open. For free events, you’ll get instant confirmation.
+          </p>
+        </div>
+
+        <!-- Booking Form -->
+        <form class="form" id="bookingForm" style="padding:16px;">
+          <h3 style="margin-bottom:10px;">Your Details</h3>
+
+          <div class="field">
+            <label for="bkName">Full Name</label>
+            <input id="bkName" type="text" placeholder="Your name" required />
+          </div>
+
+          <div class="field">
+            <label for="bkEmail">Email</label>
+            <input id="bkEmail" type="email" placeholder="you@email.com" required />
+          </div>
+
+          <div class="field">
+            <label for="bkPhone">Phone</label>
+            <input id="bkPhone" type="tel" placeholder="10-digit mobile number" required />
+          </div>
+
+          <button class="btn btn-primary full" id="payBtn" type="submit">
+            Pay / Confirm Booking
+          </button>
+
+          <p class="tiny muted" style="margin-top:10px;">
+            Tip: Use Razorpay <b>Test Mode</b> keys. UPI/Card test options will appear in checkout.
+          </p>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="muted">© 2026 Eventify. All rights reserved.</div>
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="events.html">Events</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+
+  <!-- Razorpay Checkout -->
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+  <!-- ✅ Your booking logic (must be AFTER Razorpay SDK) -->
+  <script src="js/booking.js"></script>
+
+</body>
+
+</html>

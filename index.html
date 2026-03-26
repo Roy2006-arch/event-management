@@ -1,0 +1,375 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Eventify — Event Booking System</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+  <!-- Top bar -->
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <a class="brand" href="index.html">
+        <span class="brand-logo">🎟️</span>
+        <span class="brand-name">Eventify</span>
+      </a>
+
+      <nav class="nav">
+        <a href="#upcoming">Upcoming</a>
+        <a href="#features">Features</a>
+        <a href="#contact">Contact</a>
+        <a class="btn btn-ghost" href="events.html">Browse Events</a>
+      </nav>
+
+      <button class="menu-btn" id="menuBtn" aria-label="Open Menu">☰</button>
+    </div>
+
+    <!-- Mobile Nav -->
+    <div class="mobile-nav" id="mobileNav">
+      <a href="#upcoming">Upcoming</a>
+      <a href="#features">Features</a>
+      <a href="#contact">Contact</a>
+      <a class="btn btn-primary" href="events.html">Browse Events</a>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-left">
+          <div class="pill">✨ Book Events in seconds</div>
+          <h1>Manage Events. Sell Tickets. Send Confirmations.</h1>
+          <p class="muted">
+            A simple Event Management & Booking System UI
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="events.html">Explore Events</a>
+            <a class="btn btn-ghost" href="#upcoming">View Upcoming</a>
+          </div>
+
+          <div class="stats">
+            <div class="stat">
+              <div class="stat-num">120+</div>
+              <div class="stat-label">Events Hosted</div>
+            </div>
+            <div class="stat">
+              <div class="stat-num">4.8★</div>
+              <div class="stat-label">User Rating</div>
+            </div>
+            <div class="stat">
+              <div class="stat-num">Instant</div>
+              <div class="stat-label">Confirmations</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-right">
+          <div class="card glass tilt reveal">
+            <div class="card-head">
+              <h3>Next Event</h3>
+              <span class="badge">Open</span>
+            </div>
+            <div class="card-body">
+              <div class="event-mini">
+                <div class="event-mini-img"></div>
+                <div>
+                  <div class="event-mini-title">Tech Conference 2026</div>
+                  <div class="event-mini-meta">📍 Kolkata • 🗓️ 6 Feb • ⏰ 10:00 AM</div>
+                </div>
+              </div>
+
+              <div class="divider"></div>
+
+              <div class="row">
+                <div class="kv">
+                  <div class="k">Tickets Left</div>
+                  <div class="v">38</div>
+                </div>
+                <div class="kv">
+                  <div class="k">Price</div>
+                  <div class="v">₹499</div>
+                </div>
+              </div>
+
+              <!-- You can open events page + modal -->
+              <a class="btn btn-primary full" href="booking.html?id=ev_3001">Book Now</a>
+              <p class="tiny muted">Booking confirmation will be generated instantly.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-bg"></div>
+    </section>
+
+    <!-- Upcoming -->
+    <section class="section" id="upcoming">
+      <div class="container">
+        <div class="section-head">
+          <h2>Upcoming Events</h2>
+          <a class="link" href="events.html">See all →</a>
+        </div>
+
+        <div class="grid cards-3">
+
+          <!-- 1) Music Night -->
+          <article class="event-card reveal tilt">
+            <div class="event-img"
+              style="background-image:url('https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f')"></div>
+            <div class="event-content">
+              <div class="event-top">
+                <h3>Music Night</h3>
+                <span class="tag">Live</span>
+              </div>
+              <p class="muted">An energetic night with local bands and DJs.</p>
+              <div class="event-meta">
+                <span>📍 Durgapur</span>
+                <span>🗓️ 18 Jan</span>
+                <span>₹299</span>
+              </div>
+              <div class="event-actions">
+                <a class="btn btn-sm btn-ghost" href="events.html?open=ev_1001">Details</a>
+                <a class="btn btn-sm btn-primary" href="booking.html?id=ev_1001">Book</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- 2) Startup Meetup -->
+          <article class="event-card reveal tilt">
+            <div class="event-img"
+              style="background-image:url('https://images.unsplash.com/photo-1552664730-d307ca884978')"></div>
+            <div class="event-content">
+              <div class="event-top">
+                <h3>Startup Meetup</h3>
+                <span class="tag">Talk</span>
+              </div>
+              <p class="muted">Networking + speakers + career opportunities.</p>
+              <div class="event-meta">
+                <span>📍 Kolkata</span>
+                <span>🗓️ 21 Jan</span>
+                <span>Free</span>
+              </div>
+              <div class="event-actions">
+                <a class="btn btn-sm btn-ghost" href="events.html?open=ev_1002">Details</a>
+                <a class="btn btn-sm btn-primary" href="booking.html?id=ev_1002">Book</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- 3) Workshop: Web Dev -->
+          <article class="event-card reveal tilt">
+            <div class="event-img"
+              style="background-image:url('https://images.unsplash.com/photo-1518770660439-4636190af475')"></div>
+            <div class="event-content">
+              <div class="event-top">
+                <h3>Workshop: Web Dev</h3>
+                <span class="tag">Workshop</span>
+              </div>
+              <p class="muted">Hands-on session on frontend + backend basics.</p>
+              <div class="event-meta">
+                <span>📍 Online</span>
+                <span>🗓️ 25 Jan</span>
+                <span>₹199</span>
+              </div>
+              <div class="event-actions">
+                <a class="btn btn-sm btn-ghost" href="events.html?open=ev_1003">Details</a>
+                <a class="btn btn-sm btn-primary" href="booking.html?id=ev_1003">Book</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- 4) Food Festival -->
+          <article class="event-card reveal tilt">
+            <div class="event-img"
+              style="background-image:url('https://images.unsplash.com/photo-1504674900247-0877df9cc836')"></div>
+            <div class="event-content">
+              <div class="event-top">
+                <h3>Food Festival</h3>
+                <span class="tag">Live</span>
+              </div>
+              <p class="muted">Street food, desserts, and live cooking shows all day.</p>
+              <div class="event-meta">
+                <span>📍 Kolkata</span>
+                <span>🗓️ 28 Jan</span>
+                <span>₹149</span>
+              </div>
+              <div class="event-actions">
+                <a class="btn btn-sm btn-ghost" href="events.html?open=ev_2001">Details</a>
+                <a class="btn btn-sm btn-primary" href="booking.html?id=ev_2001">Book</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- 5) Photography Walk -->
+          <article class="event-card reveal tilt">
+            <div class="event-img"
+              style="background-image:url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee')"></div>
+            <div class="event-content">
+              <div class="event-top">
+                <h3>Photography Walk</h3>
+                <span class="tag">Workshop</span>
+              </div>
+              <p class="muted">Learn composition + take amazing street shots with a mentor.</p>
+              <div class="event-meta">
+                <span>📍 Durgapur</span>
+                <span>🗓️ 30 Jan</span>
+                <span>₹99</span>
+              </div>
+              <div class="event-actions">
+                <a class="btn btn-sm btn-ghost" href="events.html?open=ev_2002">Details</a>
+                <a class="btn btn-sm btn-primary" href="booking.html?id=ev_2002">Book</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- 6) AI Webinar -->
+          <article class="event-card reveal tilt">
+            <div class="event-img"
+              style="background-image:url('https://images.unsplash.com/photo-1677442136019-21780ecad995')"></div>
+            <div class="event-content">
+              <div class="event-top">
+                <h3>AI Webinar</h3>
+                <span class="tag">Talk</span>
+              </div>
+              <p class="muted">Trends in AI + career roadmap + Q&A session.</p>
+              <div class="event-meta">
+                <span>📍 Online</span>
+                <span>🗓️ 02 Feb</span>
+                <span>Free</span>
+              </div>
+              <div class="event-actions">
+                <a class="btn btn-sm btn-ghost" href="events.html?open=ev_2003">Details</a>
+                <a class="btn btn-sm btn-primary" href="booking.html?id=ev_2003">Book</a>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Features -->
+    <section class="section alt" id="features">
+      <div class="container">
+        <h2>What this system will do</h2>
+
+        <div class="grid cards-4">
+          <div class="feature reveal">
+            <div class="feature-ic">📅</div>
+            <h3>Upcoming events</h3>
+            <p class="muted">Show events with date, location, seats & price.</p>
+          </div>
+          <div class="feature reveal">
+            <div class="feature-ic">💳</div>
+            <h3>Online booking</h3>
+            <p class="muted">Reserve tickets and pay (gateway integration).</p>
+          </div>
+          <div class="feature reveal">
+            <div class="feature-ic">🧾</div>
+            <h3>Manage details</h3>
+            <p class="muted">Admin panel to add/edit/delete events.</p>
+          </div>
+          <div class="feature reveal">
+            <div class="feature-ic">✅</div>
+            <h3>Confirmations</h3>
+            <p class="muted">Auto booking confirmation page + ID.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="section" id="contact">
+      <div class="container contact">
+        <div>
+          <h2>Contact</h2>
+          <p class="muted">For queries or partnerships, send a message.</p>
+          <div class="contact-box">
+            <div>📧 roykaustav382@gmail.com</div>
+            <div>📞 +91 62977 56290</div>
+          </div>
+        </div>
+
+        <form class="form reveal" id="contactForm">
+          <div class="row">
+            <div class="field">
+              <label>Name</label>
+              <input id="cName" type="text" placeholder="Your name" required />
+            </div>
+            <div class="field">
+              <label>Email</label>
+              <input id="cEmail" type="email" placeholder="your@email.com" required />
+            </div>
+          </div>
+
+          <div class="field">
+            <label>Message</label>
+            <textarea id="cMessage" placeholder="Write your message..." required></textarea>
+          </div>
+
+          <!-- IMPORTANT: must be submit -->
+          <button class="btn btn-primary" type="submit" id="contactSendBtn">Send</button>
+        </form>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="muted">© 2026 Eventify. All rights reserved.</div>
+      <div class="footer-links">
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+        <a href="events.html">Events</a>
+      </div>
+    </div>
+  </footer>
+
+<!-- EmailJS (ONLY ONCE) -->
+<!-- EmailJS (ONLY ONCE) -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+<script>
+  emailjs.init("ltdGz4ThXOeQlRusk");
+
+  const form = document.getElementById("contactForm");
+  const btn = document.getElementById("contactSendBtn");
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const name = document.getElementById("cName").value.trim();
+    const email = document.getElementById("cEmail").value.trim();
+    const message = document.getElementById("cMessage").value.trim();
+
+    if (!name || !email || !message) {
+      alert("Please fill all fields.");
+      return;
+    }
+
+    btn.disabled = true;
+    btn.textContent = "Sending...";
+
+    try {
+      await emailjs.send("service_sdwvi1n", "template_aluxt2o", { name, email, message });
+      alert("Message sent successfully!");
+      form.reset();
+    } catch (err) {
+      console.error("EmailJS error:", err);
+      alert("Failed to send message. Check EmailJS public key/service/template.");
+    } finally {
+      btn.disabled = false;
+      btn.textContent = "Send";
+    }
+  });
+</script>
+  <script src="js/main.js"></script>
+</body>
+</html>
